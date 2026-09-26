@@ -17,4 +17,4 @@ Desde esta carpeta, ejecute `python3 -m http.server 8000` y abra `http://localho
 
 ## Imágenes
 
-Las fotografías de las noticias se cargan desde Unsplash mediante URL externa. Para ejecutar el sitio es necesario contar con conexión a internet.
+Las fotografías de las noticias se almacenan de forma local en `assets/`. Se obtuvieron de Unsplash y Pexels para la maqueta académica.
