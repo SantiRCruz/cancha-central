@@ -129,7 +129,7 @@ p('Estos bloques corresponden al código fuente completo incluido en el reposito
 page()
 
 p('Repositorio del proyecto',style='Heading 1')
-p('El código fuente se encuentra organizado en un repositorio Git local llamado cancha-central. La URL del repositorio público se agregará después de su publicación en la cuenta de GitHub del estudiante. El proyecto incluye un archivo README con instrucciones de ejecución mediante un servidor local.')
+p('El código fuente se encuentra publicado en el repositorio público de GitHub Cancha Central. URL del repositorio: https://github.com/SantiRCruz/cancha-central. El proyecto incluye un archivo README con instrucciones de ejecución mediante un servidor local.')
 p('Conclusiones',style='Heading 1',before=18)
 p('La Entrega 2 demuestra la transición de la maquetación hacia un prototipo web funcional. El sitio conserva la identidad de Cancha Central y resuelve los recorridos principales de un usuario: descubrir noticias, filtrarlas, consultar su detalle, guardarlas como favoritas y contactar al equipo editorial.')
 p('El uso de un archivo JSON y localStorage permite evidenciar una gestión básica de datos sin requerir un servidor. Esta arquitectura facilita la evolución futura hacia Angular, componentes reutilizables y un despliegue público en la entrega final.')

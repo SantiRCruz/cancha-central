@@ -2,6 +2,8 @@
 
 Prototipo funcional para la Entrega 2. Desarrollado con HTML, CSS y JavaScript.
 
+Repositorio: https://github.com/SantiRCruz/cancha-central
+
 ## Ejecutar localmente
 
 Desde esta carpeta, ejecute `python3 -m http.server 8000` y abra `http://localhost:8000`.
