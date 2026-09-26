@@ -51,7 +51,7 @@ p('26 de septiembre de 2026',align=WD_ALIGN_PARAGRAPH.CENTER,indent=False)
 page()
 
 p('Tabla de contenido',style='Heading 1',align=WD_ALIGN_PARAGRAPH.CENTER)
-for line in ['Introducción .......................................................... 3','Objetivos .................................................................... 3','Implementación del prototipo ....................................... 4','Estructura del código .................................................. 4','Maquetación de la Entrega 1 ......................................... 5','Funcionalidades implementadas ..................................... 9','Fragmentos de código fuente ........................................ 10','Anexo de código fuente .............................................. 11','Repositorio, conclusiones y referencias ......................... 14']:
+for line in ['Introducción .......................................................... 3','Objetivos .................................................................... 3','Implementación del prototipo ....................................... 4','Estructura del código .................................................. 4','Maquetación de la Entrega 1 ......................................... 5','Correspondencia entre mockups y desarrollo .................... 9','Funcionalidades implementadas ................................... 10','Pruebas funcionales .................................................. 11','Fragmentos de código fuente ...................................... 12','Anexo de código fuente ............................................ 13','Repositorio, conclusiones y referencias ....................... 16']:
     p(line,indent=False,before=6)
 page()
 
@@ -87,9 +87,21 @@ p('Maquetación de la Entrega 1',style='Heading 1')
 fig(MOCKUPS/'contact.png','Figura 4. Maquetación de la página de contacto.')
 page()
 
+p('Correspondencia entre mockups y desarrollo',style='Heading 1')
+p('La nota de entrega solicita conservar la relación entre la maquetación y el prototipo funcional. La siguiente matriz evidencia cómo se trasladaron al desarrollo los elementos centrales definidos en Figma.',indent=False)
+table([('Home','Se conservan el encabezado, sección de bienvenida, llamadas a la acción, noticias destacadas y pie de página.'),('Listado','El catálogo mantiene tarjetas con imagen, categoría, título, descripción breve y enlace. Se añadieron búsqueda y filtros.'),('Detalle','La vista conserva la jerarquía de título, imagen, información editorial y acción para agregar a favoritos.'),('Contacto','Se conserva la composición de información editorial y formulario; se implementaron validaciones y confirmación de envío.')])
+p('Las pantallas de Favoritos y Administración amplían la propuesta inicial para cubrir la interacción persistente y el mini CRUD solicitados en la Entrega 2.',indent=False,before=10)
+page()
+
 p('Funcionalidades implementadas',style='Heading 1')
 table([('Noticias dinámicas','noticias.html consulta data/noticias.json y genera tarjetas con imagen, categoría, título, descripción y enlace.'),('Búsqueda y filtros','El listado filtra las noticias por texto y por categoría sin recargar la página.'),('Detalle','detalle.html recupera el identificador de la noticia desde la URL y muestra su contenido completo.'),('Favoritos','El usuario agrega o elimina favoritos. La lista se conserva mediante localStorage, tecnología descrita por MDN Web Docs (2025c).'),('Contacto','El formulario valida campos obligatorios, formato de correo y longitud mínima del mensaje antes de confirmar el envío.'),('Mini CRUD','administrar.html permite crear noticias y eliminarlas; los cambios se almacenan localmente para la sesión posterior.')])
 p('La interfaz incluye un menú de seis páginas, un pie de página uniforme y adaptación responsive. La estructura se diseñó para que el código pueda evolucionar a componentes de Angular en la siguiente entrega.')
+page()
+
+p('Pruebas funcionales',style='Heading 1')
+p('Se realizaron pruebas manuales en navegador usando el flujo principal de cada pantalla. Los resultados permiten comprobar el comportamiento solicitado sin requerir un servidor de base de datos.',indent=False)
+table([('Carga desde JSON','Al abrir Inicio o Noticias se generan tarjetas a partir de data/noticias.json. Resultado: correcto.'),('Búsqueda y filtro','Se consultaron términos y categorías; el contador y las tarjetas se actualizan sin recargar. Resultado: correcto.'),('Favoritos','Se agregó una noticia, se navegó a otra página y se verificó su permanencia al volver. Resultado: correcto.'),('Formulario','Se intentó enviar campos vacíos, correo inválido y mensaje corto; se mostraron errores. Con datos válidos aparece confirmación. Resultado: correcto.'),('Crear noticia','Desde Administración se registró una noticia válida y apareció en el panel y el catálogo. Resultado: correcto.'),('Eliminar noticia','Se eliminó una publicación creada; se retiró del panel y de favoritos, si estaba guardada. Resultado: correcto.')])
+p('Estas verificaciones demuestran el uso integrado de HTML, CSS y JavaScript, así como la persistencia local requerida para esta fase del proyecto.',indent=False,before=10)
 page()
 
 p('Fragmentos de código fuente',style='Heading 1')
