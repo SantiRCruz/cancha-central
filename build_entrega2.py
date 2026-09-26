@@ -76,6 +76,7 @@ page()
 
 p('Maquetación de la Entrega 1',style='Heading 1')
 p('Las siguientes pantallas corresponden a la propuesta visual utilizada como guía durante el desarrollo. La implementación funcional conserva la navegación, las tarjetas de noticias, los llamados a la acción y la identidad visual planteada en Figma.')
+p('Diseño de Figma: https://www.figma.com/design/t0vgghM0RM6XpV8sWRljBA/Cancha-Central-%E2%80%94-Mockups?node-id=0-1',indent=False,before=4)
 fig(MOCKUPS/'home.png','Figura 1. Maquetación de la página Home de Cancha Central.')
 fig(MOCKUPS/'list.png','Figura 2. Maquetación del listado de noticias.')
 page()
