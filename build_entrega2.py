@@ -51,7 +51,7 @@ p('26 de septiembre de 2026',align=WD_ALIGN_PARAGRAPH.CENTER,indent=False)
 page()
 
 p('Tabla de contenido',style='Heading 1',align=WD_ALIGN_PARAGRAPH.CENTER)
-for line in ['Introducción .......................................................... 3','Objetivos .................................................................... 3','Implementación del prototipo ....................................... 4','Estructura del código .................................................. 4','Maquetación de la Entrega 1 ......................................... 5','Funcionalidades implementadas ..................................... 9','Fragmentos de código fuente ........................................ 10','Repositorio, conclusiones y referencias ......................... 11']:
+for line in ['Introducción .......................................................... 3','Objetivos .................................................................... 3','Implementación del prototipo ....................................... 4','Estructura del código .................................................. 4','Maquetación de la Entrega 1 ......................................... 5','Funcionalidades implementadas ..................................... 9','Fragmentos de código fuente ........................................ 10','Anexo de código fuente .............................................. 11','Repositorio, conclusiones y referencias ......................... 14']:
     p(line,indent=False,before=6)
 page()
 
@@ -100,6 +100,32 @@ code("function toggleFavorite(id) {\n  const items = favorites();\n  setLocal(KE
 p('Validación del formulario',style='Heading 2',before=10)
 code("form.addEventListener('submit', e => {\n  e.preventDefault();\n  const bad = !field.validity.valid;\n  field.classList.toggle('invalid', bad);\n  if (valid) success.hidden = false;\n});")
 p('Estos fragmentos se encuentran comentados y centralizados en js/app.js. El repositorio local contiene el código fuente completo y el archivo README con las instrucciones para ejecutar el servidor local.')
+page()
+
+p('Anexo de código fuente',style='Heading 1')
+p('Los siguientes extractos amplían la evidencia del desarrollo. Se presentan por responsabilidad para mostrar la organización entre estructura HTML, estilos CSS, datos JSON y lógica JavaScript.',indent=False)
+p('Estructura de la página de inicio index.html',style='Heading 2',before=10)
+code('<body data-page="home">\n  <header class="site-header"></header>\n  <main id="contenido">\n    <section class="hero"> ... </section>\n    <div id="featured-news" class="cards cards--three"></div>\n  </main>\n  <script src="js/app.js"></script>\n</body>')
+p('El atributo data-page identifica la vista actual. JavaScript inserta el encabezado y el pie de página compartidos, lo que evita repetir el mismo código en cada archivo HTML.',indent=False)
+p('Datos de noticias data/noticias.json',style='Heading 2',before=10)
+code('{\n  "id": 1,\n  "title": "La táctica que cambió la Liga BetPlay",\n  "category": "Fútbol colombiano",\n  "image": "assets/futbol-balón.jpg",\n  "description": "Análisis de la jornada..."\n}')
+page()
+
+p('Anexo de código fuente',style='Heading 1')
+p('Estilos de tarjetas css/styles.css',style='Heading 2',before=10)
+code('.cards {\n  display: grid;\n  gap: 1.4rem;\n}\n.cards--three { grid-template-columns: repeat(3, 1fr); }\n.card {\n  background: #fff;\n  border: 1px solid var(--line);\n  border-radius: 15px;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n}\n.card img {\n  width: 100%; height: 170px;\n  object-fit: cover; object-position: center top;\n}')
+p('La cuadrícula organiza las tarjetas en tres columnas en escritorio. Las reglas responsive cambian el número de columnas en pantallas pequeñas para conservar la legibilidad.',indent=False)
+p('Carga de datos y generación de tarjetas js/app.js',style='Heading 2',before=10)
+code('async function init() {\n  renderLayout();\n  try {\n    baseNews = await fetch("data/noticias.json")\n      .then(response => response.json());\n  } catch {\n    // Se informa al usuario si el JSON no está disponible.\n    return;\n  }\n  const page = document.body.dataset.page;\n  const initPage = { home: initHome, news: initNews,\n    detail: initDetail, favorites: initFavorites,\n    contact: initContact, admin: initAdmin }[page];\n  if (initPage) initPage();\n}\n\nfunction newsCard(item) {\n  return `<article class="card"> ... ${item.title} ... </article>`;\n}')
+page()
+
+p('Anexo de código fuente',style='Heading 1')
+p('Favoritos y almacenamiento local js/app.js',style='Heading 2',before=10)
+code('function favorites() {\n  return getLocal(KEYS.favorites, []);\n}\n\nfunction toggleFavorite(id) {\n  const items = favorites();\n  const updated = items.includes(id)\n    ? items.filter(item => item !== id)\n    : [...items, id];\n  setLocal(KEYS.favorites, updated);\n}')
+p('La función alterna el identificador de una noticia en localStorage. De esta manera, los favoritos se conservan cuando el usuario cambia de página o vuelve a abrir el sitio.',indent=False)
+p('Validación del formulario y creación de noticias',style='Heading 2',before=10)
+code('form.addEventListener("submit", event => {\n  event.preventDefault();\n  const invalidEmail = !form.elements.email.validity.valid;\n  const shortMessage = form.elements.message.value.trim().length < 10;\n  if (invalidEmail || shortMessage) return;\n  form.reset();\n  success.hidden = false;\n});\n\n// El panel Administración crea una noticia y la guarda en localStorage.\nsetLocal(KEYS.news, [item, ...getLocal(KEYS.news, [])]);')
+p('Estos bloques corresponden al código fuente completo incluido en el repositorio. Los comentarios explican las decisiones de carga, persistencia, validación y creación de noticias.',indent=False)
 page()
 
 p('Repositorio del proyecto',style='Heading 1')
