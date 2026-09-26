@@ -66,12 +66,12 @@ for x in ['Construir las páginas Home, Listado, Detalle, Favoritos, Contacto y 
 page()
 
 p('Implementación del prototipo',style='Heading 1')
-p('El prototipo mantiene la identidad visual definida en la primera entrega: azul marino para la navegación y la información editorial, verde para acciones principales, amarillo como color de énfasis y marfil como fondo. El diseño responde a pantallas de computador y dispositivos móviles mediante media queries en CSS.')
+p('El prototipo mantiene la identidad visual definida en la primera entrega: azul marino para la navegación y la información editorial, verde para acciones principales, amarillo como color de énfasis y marfil como fondo. El diseño responde a pantallas de computador y dispositivos móviles mediante media queries en CSS. Las tarjetas emplean fotografías deportivas almacenadas localmente en la carpeta assets, por lo que la presentación visual no depende de una conexión a internet.')
 p('Tecnologías utilizadas',style='Heading 2',before=12)
 table([('HTML5','Estructura semántica de las seis páginas y formularios accesibles.'),('CSS3','Sistema visual, grid, tarjetas, diseño responsive y estados de interacción.'),('JavaScript','Carga dinámica del JSON, filtros, favoritos, validaciones y CRUD.'),('JSON local','Fuente inicial de noticias ubicada en data/noticias.json.'),('localStorage','Persistencia de favoritos y noticias creadas desde el panel editorial.')])
 p('Estructura del código',style='Heading 1',before=18)
 p('La organización separa responsabilidades para facilitar la lectura y el mantenimiento del código. Los archivos de presentación se ubican en la raíz, los estilos en css, la lógica compartida en js, los datos en data y los recursos gráficos en assets.')
-code('cancha-central/\n├── index.html | noticias.html | detalle.html | favoritos.html\n├── contacto.html | administrar.html\n├── css/styles.css\n├── js/app.js\n├── data/noticias.json\n└── assets/noticia-*.svg')
+code('cancha-central/\n├── index.html | noticias.html | detalle.html | favoritos.html\n├── contacto.html | administrar.html\n├── css/styles.css\n├── js/app.js\n├── data/noticias.json\n└── assets/futbol-*.jpg')
 page()
 
 p('Maquetación de la Entrega 1',style='Heading 1')
