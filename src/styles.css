@@ -1,0 +1,60 @@
+@import '../css/styles.css';
+
+/* Ajustes de la versión Angular: componentes, binding y estados de navegación. */
+.menu a.active {
+  color: var(--yellow);
+}
+app-news-card {
+  display: block;
+  height: 100%;
+}
+app-news-card .card {
+  height: 100%;
+}
+.hero__actions {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+.button--outline {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+}
+.breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+.contact-button {
+  display: block;
+  text-align: center;
+  margin-top: 0.75rem;
+}
+.admin-message {
+  margin-bottom: 1rem;
+}
+.admin-form {
+  margin-bottom: 1.5rem;
+}
+.admin-form form {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.admin-form label:nth-of-type(n + 3),
+.admin-form button {
+  grid-column: 1/-1;
+}
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+@media (max-width: 570px) {
+  .admin-form form {
+    grid-template-columns: 1fr;
+  }
+  .admin-form label,
+  .admin-form button {
+    grid-column: 1;
+  }
+}

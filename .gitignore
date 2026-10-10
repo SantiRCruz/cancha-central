@@ -1,3 +1,9 @@
 .DS_Store
 *.pdf
 entrega2_render/
+entrega2_render_final/
+entrega2_review/
+node_modules/
+dist/
+.angular/
+private/

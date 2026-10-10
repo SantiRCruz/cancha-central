@@ -1,0 +1,43 @@
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<header class="site-header">
+  <nav class="nav container" aria-label="Navegación principal">
+    <a class="brand" routerLink="/" (click)="closeMenu()">
+      <b class="brand-mark" aria-hidden="true">⚽</b>CANCHA <span>CENTRAL</span>
+    </a>
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Abrir menú"
+      (click)="menuOpen.update((value) => !value)"
+    >
+      ☰
+    </button>
+    <div class="menu" [class.open]="menuOpen()">
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="closeMenu()"
+        >Inicio</a
+      >
+      <a routerLink="/noticias" routerLinkActive="active" (click)="closeMenu()">Noticias</a>
+      <a routerLink="/favoritos" routerLinkActive="active" (click)="closeMenu()">Favoritos</a>
+      <a routerLink="/contacto" routerLinkActive="active" (click)="closeMenu()">Contacto</a>
+      <a routerLink="/administrar" routerLinkActive="active" (click)="closeMenu()">Administrar</a>
+    </div>
+  </nav>
+</header>
+
+<main id="contenido">
+  <router-outlet />
+</main>
+
+<footer class="site-footer">
+  <div class="footer-content container">
+    <p>© 2026 Cancha Central · Noticias, análisis y pasión por el fútbol.</p>
+    <p>
+      <a routerLink="/contacto">Contacto</a> · <a routerLink="/noticias">Noticias</a> ·
+      <a routerLink="/favoritos">Favoritos</a>
+    </p>
+  </div>
+</footer>
