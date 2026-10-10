@@ -23,17 +23,37 @@ import { NewsService } from '../../core/news.service';
       @if (formVisible()) {
         <div class="form-card admin-form">
           <h2>Crear noticia</h2>
-          <form #articleForm="ngForm" (ngSubmit)="create(articleForm)">
+          <p class="form-help">* Todos los campos son obligatorios.</p>
+          <form #articleForm="ngForm" (ngSubmit)="create(articleForm)" novalidate>
             <label
-              >Título *<input name="title" [(ngModel)]="model.title" required minlength="5"
-            /></label>
+              >Título *<input
+                name="title"
+                [(ngModel)]="model.title"
+                required
+                minlength="5"
+                #title="ngModel"
+                [class.invalid]="submitted() && title.invalid"
+                [attr.aria-invalid]="submitted() && title.invalid"
+              /><span class="error">{{
+                submitted() && title.invalid ? 'Escribe un título de al menos 5 caracteres.' : ''
+              }}</span></label
+            >
             <label
-              >Categoría *<select name="category" [(ngModel)]="model.category" required>
+              >Categoría *<select
+                name="category"
+                [(ngModel)]="model.category"
+                required
+                #category="ngModel"
+                [class.invalid]="submitted() && category.invalid"
+                [attr.aria-invalid]="submitted() && category.invalid"
+              >
                 <option>Fútbol colombiano</option>
                 <option>Internacional</option>
                 <option>Champions</option>
                 <option>Opinión</option>
-              </select></label
+              </select><span class="error">{{
+                submitted() && category.invalid ? 'Selecciona una categoría.' : ''
+              }}</span></label
             >
             <label
               >Descripción breve *<textarea
@@ -42,7 +62,14 @@ import { NewsService } from '../../core/news.service';
                 required
                 minlength="10"
                 rows="3"
-              ></textarea>
+                #description="ngModel"
+                [class.invalid]="submitted() && description.invalid"
+                [attr.aria-invalid]="submitted() && description.invalid"
+              ></textarea><span class="error">{{
+                submitted() && description.invalid
+                  ? 'Escribe una descripción de al menos 10 caracteres.'
+                  : ''
+              }}</span>
             </label>
             <label
               >Contenido *<textarea
@@ -51,9 +78,19 @@ import { NewsService } from '../../core/news.service';
                 required
                 minlength="20"
                 rows="5"
-              ></textarea>
+                #content="ngModel"
+                [class.invalid]="submitted() && content.invalid"
+                [attr.aria-invalid]="submitted() && content.invalid"
+              ></textarea><span class="error">{{
+                submitted() && content.invalid
+                  ? 'Escribe un contenido de al menos 20 caracteres.'
+                  : ''
+              }}</span>
             </label>
             <button class="button" type="submit">Publicar noticia</button>
+            @if (formError()) {
+              <p class="form-error" role="alert">{{ formError() }}</p>
+            }
           </form>
         </div>
       }
@@ -98,17 +135,24 @@ export class Admin {
   readonly news = inject(NewsService);
   readonly formVisible = signal(false);
   readonly message = signal('');
+  readonly submitted = signal(false);
+  readonly formError = signal('');
   model = { title: '', category: 'Fútbol colombiano', description: '', content: '' };
 
   create(form: NgForm): void {
+    this.submitted.set(true);
+    this.message.set('');
+    this.formError.set('');
     if (form.invalid) {
       form.control.markAllAsTouched();
+      this.formError.set('Revisa los campos marcados antes de publicar la noticia.');
       return;
     }
     this.news.addArticle(this.model);
-    this.message.set('Noticia creada correctamente.');
+    this.message.set('Noticia creada correctamente. Ya aparece en el catálogo y en esta tabla.');
     this.formVisible.set(false);
     form.resetForm({ category: 'Fútbol colombiano' });
+    this.submitted.set(false);
   }
 
   remove(id: number): void {
